@@ -1,8 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { getCategories } from '../services/api';
 
 class Home extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      categorias: [],
+    };
+  }
+
+  componentDidMount() {
+    this.pegarCategoriasApi();
+  }
+
+  pegarCategoriasApi = async () => {
+    const resultado = await getCategories();
+    this.setState({ categorias: resultado });
+    console.log(resultado);
+  };
+
   render() {
+    const { categorias } = this.state;
     return (
       <div>
         <label
@@ -21,6 +40,17 @@ class Home extends React.Component {
         >
           carrinho de compras
         </Link>
+        <aside>
+          { categorias.map(({ id, name }) => (
+            <button
+              data-testid="category"
+              type="button"
+              key={ id }
+            >
+              { name }
+            </button>
+          ))}
+        </aside>
       </div>
     );
   }
