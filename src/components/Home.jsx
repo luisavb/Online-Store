@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
-// import CardItem from './CardItem';
+import CardItem from './CardItem';
 
 class Home extends React.Component {
   constructor() {
@@ -34,13 +34,16 @@ class Home extends React.Component {
   onClick = async () => {
     const { produto } = this.state;
     const resultadoPesquisa = await getProductsFromCategoryAndQuery('', produto);
-    console.log(resultadoPesquisa.results);
+    this.setState({
+      pesquisa: resultadoPesquisa.results,
+    });
   }
 
   render() {
     const {
       categorias,
       produto,
+      pesquisa,
     } = this.state;
     return (
       <div>
@@ -82,7 +85,9 @@ class Home extends React.Component {
             </button>
           ))}
         </aside>
-        {/* <section><CardItem /></section> */}
+        <section>
+          { pesquisa.map((elemento) => (<CardItem key={ elemento.title } item={ elemento } />))}
+        </section>
       </div>
     );
   }
