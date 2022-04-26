@@ -1,5 +1,6 @@
 import React from 'react';
 import { getCategories, getProductsFromCategoryAndQuery } from './services/api';
+import Home from './components/Home';
 
 class App extends React.Component {
   async componentDidMount() {
@@ -13,8 +14,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <>
-      </>
+      <Home />
     );
   }
 }
