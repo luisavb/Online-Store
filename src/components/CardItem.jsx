@@ -5,7 +5,7 @@ class CardItem extends React.Component {
   render() {
     const { item } = this.props;
     return (
-      <div>
+      <div data-testid="product">
         <p>
           { item.title }
         </p>
