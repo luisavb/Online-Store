@@ -1,12 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { getCategories } from '../services/api';
+import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
+// import CardItem from './CardItem';
 
 class Home extends React.Component {
   constructor() {
     super();
     this.state = {
+      produto: '',
       categorias: [],
+      pesquisa: [],
     };
   }
 
@@ -20,8 +23,25 @@ class Home extends React.Component {
     console.log(resultado);
   };
 
+  onChange =({ target }) => {
+    const {
+      name,
+      value,
+    } = target;
+    this.setState({ [name]: value });
+  }
+
+  onClick = async () => {
+    const { produto } = this.state;
+    const resultadoPesquisa = await getProductsFromCategoryAndQuery('', produto);
+    console.log(resultadoPesquisa.results);
+  }
+
   render() {
-    const { categorias } = this.state;
+    const {
+      categorias,
+      produto,
+    } = this.state;
     return (
       <div>
         <label
@@ -30,10 +50,21 @@ class Home extends React.Component {
         >
           Digite algum termo de pesquisa ou escolha uma categoria.
           <input
+            data-testid="query-input"
+            onChange={ this.onChange }
+            value={ produto }
+            name="produto"
             type="text"
             id="text"
           />
         </label>
+        <button
+          onClick={ this.onClick }
+          type="button"
+          data-testid="query-button"
+        >
+          Pesquisar
+        </button>
         <Link
           to="/shopping-cart"
           data-testid="shopping-cart-button"
@@ -51,6 +82,7 @@ class Home extends React.Component {
             </button>
           ))}
         </aside>
+        {/* <section><CardItem /></section> */}
       </div>
     );
   }

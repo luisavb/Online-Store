@@ -11,7 +11,8 @@ class App extends React.Component {
 
   teste = async () => {
     getCategories().then((categories) => { console.log(categories); });
-    getProductsFromCategoryAndQuery().then((categories) => { console.log(categories); });
+    getProductsFromCategoryAndQuery('', 'computador')
+      .then((categories) => { console.log(categories); });
   };
 
   render() {
