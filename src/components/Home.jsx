@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import {
   getCategories,
   getProductsFromCategoryAndQuery,
+  getProductDetail,
 } from '../services/api';
 import CardItem from './CardItem';
+import ShoppingCart from './ShoppingCart';
 
 class Home extends React.Component {
   constructor() {
@@ -16,6 +18,7 @@ class Home extends React.Component {
       loading: false,
       botaoCategoria: false,
       resultadoBotaoCategoria: [],
+      carrinho: [],
     };
   }
 
@@ -49,12 +52,24 @@ class Home extends React.Component {
   pesquisarCategoria = async (categoria) => {
     const resultadoPesquisa = await getProductsFromCategoryAndQuery(categoria, '');
     console.log(resultadoPesquisa.results);
-    console.log(categoria);
+    // console.log(categoria);
     this.setState({
       botaoCategoria: true,
       resultadoBotaoCategoria: resultadoPesquisa.results,
     });
   };
+
+  onClickColocaCarrinho = async (id) => {
+    // console.log('clicou');
+    const productDetail = await getProductDetail(id);
+    // console.log(productDetail);
+    this.setState((estadoAnterior) => {
+      const teste = estadoAnterior.carrinho;
+      return ({
+        carrinho: [...teste, productDetail],
+      });
+    });
+  }
 
   render() {
     const {
@@ -99,7 +114,11 @@ class Home extends React.Component {
         {loading && (
           <section>
             {pesquisa.map((elemento) => (
-              <CardItem key={ elemento.title } item={ elemento } />
+              <CardItem
+                key={ elemento.title }
+                item={ elemento }
+                onClickColocaCarrinho={ () => this.onClickColocaCarrinho(elemento.id) }
+              />
             ))}
           </section>
         )}
@@ -107,7 +126,11 @@ class Home extends React.Component {
         {botaoCategoria && (
           <>
             {resultadoBotaoCategoria.map((categoria, index) => (
-              <CardItem key={ index } item={ categoria } />
+              <CardItem
+                key={ index }
+                item={ categoria }
+                onClickColocaCarrinho={ () => this.onClickColocaCarrinho(categoria.id) }
+              />
             ))}
           </>
         )}

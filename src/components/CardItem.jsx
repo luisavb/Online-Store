@@ -1,10 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+// import { getProductDetail } from '../services/api';
 
 class CardItem extends React.Component {
+  // constructor() {
+  //   super();
+
+  //   this.state = {
+  //     carrinho: [],
+  //   };
+  // this.onInputChange = this.onInputChange.bind(this);
+  // }
+
+  // onClickColocaCarrinho = async () => {
+  //   // console.log('clicou');
+  //   const { item } = this.props;
+  //   const productDetail = await getProductDetail(item.id);
+  //   // console.log(productDetail);
+  //   this.setState((estadoAnterior) => {
+  //     const teste = estadoAnterior.carrinho;
+  //     return ({
+  //       carrinho: [...teste, productDetail],
+  //     });
+  //   });
+  // }
+
   render() {
-    const { item } = this.props;
+    const { item, onClickColocaCarrinho } = this.props;
     return (
       <div data-testid="product">
         <p>
@@ -19,8 +42,15 @@ class CardItem extends React.Component {
             to={ `/product-detail/${item.id}` }
             data-testid="product-detail-link"
           >
-            Link
+            Mais detalhes...
           </Link>
+          <button
+            onClick={ onClickColocaCarrinho }
+            type="button"
+            data-testid="product-add-to-cart"
+          >
+            Adicionar ao carrinho
+          </button>
         </div>
       </div>
       // link react para product
@@ -35,6 +65,7 @@ CardItem.propTypes = {
     price: PropTypes.number,
     id: PropTypes.string,
   }).isRequired,
+  onClickColocaCarrinho: PropTypes.func.isRequired,
 };
 
 export default CardItem;
