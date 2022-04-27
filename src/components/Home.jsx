@@ -1,16 +1,16 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   getCategories,
   getProductsFromCategoryAndQuery,
-} from "../services/api";
-import CardItem from "./CardItem";
+} from '../services/api';
+import CardItem from './CardItem';
 
 class Home extends React.Component {
   constructor() {
     super();
     this.state = {
-      produto: "",
+      produto: '',
       categorias: [],
       pesquisa: [],
       loading: false,
@@ -26,7 +26,7 @@ class Home extends React.Component {
   pegarCategoriasApi = async () => {
     const resultado = await getCategories();
     this.setState({ categorias: resultado });
-    console.log(resultado);
+    // console.log(resultado);
   };
 
   onChange = ({ target }) => {
@@ -49,6 +49,7 @@ class Home extends React.Component {
   pesquisarCategoria = async (categoria) => {
     const resultadoPesquisa = await getProductsFromCategoryAndQuery(categoria, '');
     console.log(resultadoPesquisa.results);
+    console.log(categoria);
     this.setState({
       botaoCategoria: true,
       resultadoBotaoCategoria: resultadoPesquisa.results,
@@ -70,14 +71,14 @@ class Home extends React.Component {
           Digite algum termo de pesquisa ou escolha uma categoria.
           <input
             data-testid="query-input"
-            onChange={this.onChange}
-            value={produto}
+            onChange={ this.onChange }
+            value={ produto }
             name="produto"
             type="text"
             id="text"
           />
         </label>
-        <button onClick={this.onClick} type="button" data-testid="query-button">
+        <button onClick={ this.onClick } type="button" data-testid="query-button">
           Pesquisar
         </button>
         <Link to="/shopping-cart" data-testid="shopping-cart-button">
@@ -88,8 +89,8 @@ class Home extends React.Component {
             <button
               data-testid="category"
               type="button"
-              key={id}
-              onClick={() => this.pesquisarCategoria(id)}
+              key={ id }
+              onClick={ () => this.pesquisarCategoria(id) }
             >
               {name}
             </button>
@@ -98,7 +99,7 @@ class Home extends React.Component {
         {loading && (
           <section>
             {pesquisa.map((elemento) => (
-              <CardItem key={elemento.title} item={elemento} />
+              <CardItem key={ elemento.title } item={ elemento } />
             ))}
           </section>
         )}
@@ -106,7 +107,7 @@ class Home extends React.Component {
         {botaoCategoria && (
           <>
             {resultadoBotaoCategoria.map((categoria, index) => (
-              <CardItem key={index} item={categoria} />
+              <CardItem key={ index } item={ categoria } />
             ))}
           </>
         )}

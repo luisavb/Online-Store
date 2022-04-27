@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class CardItem extends React.Component {
   render() {
@@ -13,7 +14,16 @@ class CardItem extends React.Component {
         <p>
           { item.price }
         </p>
+        <div>
+          <Link
+            to={ `/product-detail/${item.id}` }
+            data-testid="product-detail-link"
+          >
+            Link
+          </Link>
+        </div>
       </div>
+      // link react para product
     );
   }
 }
@@ -23,6 +33,7 @@ CardItem.propTypes = {
     title: PropTypes.string,
     thumbnail: PropTypes.string,
     price: PropTypes.number,
+    id: PropTypes.string,
   }).isRequired,
 };
 
