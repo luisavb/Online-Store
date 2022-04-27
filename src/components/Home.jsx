@@ -6,7 +6,7 @@ import {
   getProductDetail,
 } from '../services/api';
 import CardItem from './CardItem';
-import ShoppingCart from './ShoppingCart';
+// import ShoppingCart from './ShoppingCart';
 
 class Home extends React.Component {
   constructor() {
@@ -69,6 +69,8 @@ class Home extends React.Component {
         carrinho: [...teste, productDetail],
       });
     });
+    const { carrinho } = this.state;
+    localStorage.setItem('teste', carrinho);
   }
 
   render() {
@@ -79,6 +81,7 @@ class Home extends React.Component {
       loading,
       botaoCategoria,
       resultadoBotaoCategoria,
+      carrinho,
     } = this.state;
     return (
       <div>
@@ -96,9 +99,13 @@ class Home extends React.Component {
         <button onClick={ this.onClick } type="button" data-testid="query-button">
           Pesquisar
         </button>
-        <Link to="/shopping-cart" data-testid="shopping-cart-button">
-          carrinho de compras
+        <Link data-testid="shopping-cart-button"  to={{ pathname: "/shopping-cart", state: { itens: {carrinho} } } }>
+          Carrinho
         </Link>
+        {/* <ShoppingCart itens={ carrinho } /> */}
+        {/* <Link to="/shopping-cart" props={{ itens: {carrinho} }} data-testid="shopping-cart-button" >
+          carrinho de compras
+        </Link> */}
         <aside>
           {categorias.map(({ id, name }) => (
             <button
