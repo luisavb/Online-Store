@@ -9,8 +9,12 @@ class ProductDetail extends React.Component {
 
     this.state = {
       produto: {},
+      // avaliação: false,
+      email: '',
+      texto: '',
+      nota: '',
     };
-    // this.onInputChange = this.onInputChange.bind(this);
+    this.changeInput = this.changeInput.bind(this);
   }
 
   componentDidMount() {
@@ -26,8 +30,25 @@ class ProductDetail extends React.Component {
     });
   }
 
+  buttonLocalStorage = () => {
+    const { email, texto, nota } = this.state;
+    const form = { email, texto, nota };
+    localStorage.setItem('review', JSON.stringify(form));
+  }
+
+  changeInput({ target }) {
+    const { name } = target;
+    if (target.type !== 'radio') {
+      this.setState({ [name]: target.value });
+    } else {
+      this.setState({ nota: target.id });
+    }
+  }
+
   render() {
-    const { produto } = this.state;
+    const { produto, email, texto } = this.state;
+
+    const limite = ['1', '2', '3', '4', '5'];
 
     const { onClickColocaCarrinho } = this.props;
     // console.log(product.base_price);
@@ -58,6 +79,48 @@ class ProductDetail extends React.Component {
         <Link to="/shopping-cart" data-testid="shopping-cart-button">
           carrinho de compras
         </Link>
+        <form>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            value={ email }
+            placeholder="Email"
+            data-testid="product-detail-email"
+            onChange={ this.changeInput }
+          />
+          {limite.map((e) => (
+            <label key={ e } htmlFor={ e }>
+              { e }
+              <input
+                id={ e }
+                type="radio"
+                data-testid={ `${e}-rating` }
+                name="avaliação"
+                onChange={ this.changeInput }
+              />
+            </label>
+
+          )) }
+          <textarea
+            type="text"
+            name="texto"
+            id="text"
+            placeholder="Mensagem(opcional)"
+            value={ texto }
+            data-testid="product-detail-evaluation"
+            onChange={ this.changeInput }
+          />
+          <button
+            type="submit"
+            data-testid="edit-button-save"
+            onClick={ this.buttonLocalStorage }
+          >
+            Salvar?
+          </button>
+        </form>
+        {localStorage.getItem('review')}
+
       </div>
     );
   }
