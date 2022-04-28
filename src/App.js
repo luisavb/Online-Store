@@ -19,7 +19,7 @@ class App extends React.Component {
       price,
       thumbnail,
       quantidade: 1,
-      total: 0,
+      total: price,
     };
 
     const checarItem = carrinho.some((i) => i.title === title);
@@ -35,11 +35,9 @@ class App extends React.Component {
 
   onClickRemoverItem = (title) => {
     const { carrinho } = this.state;
-    const index = carrinho.find((e, i) => i.title === title);
-    carrinho.shift(carrinho[index]);
-    this.setState({
-      carrinho,
-    });
+    const index = carrinho.findIndex((i) => i.title === title);
+    carrinho.splice(index, 1);
+    this.setState({ carrinho });
   }
 
   onClickDiminuirQuantidade = (title, quantidade, price) => {
@@ -47,7 +45,7 @@ class App extends React.Component {
     const { carrinho } = this.state;
     const itemRemove = carrinho.find((i) => i.title === title);
     itemRemove.quantidade -= 1;
-    console.log(price, itemRemove.price);
+    // console.log(price, itemRemove.price);
     itemRemove.total -= price;
     // console.log(itemRemove.price);
     this.setState({ carrinho });
