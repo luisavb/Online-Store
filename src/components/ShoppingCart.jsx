@@ -3,8 +3,18 @@ import PropTypes from 'prop-types';
 
 class ShoppingCart extends React.Component {
   render() {
-    const { carrinho } = this.props;
-    console.log(carrinho.length);
+    const {
+      carrinho,
+      onClickRemoverItem,
+      onClickDiminuirQuantidade,
+      onClickAumentarQuantidade } = this.props;
+    // if (carrinho.length > 0) {
+    //   let teste = [];
+    //   carrinho.forEach((i) => { teste += i.price; });
+    //   console.log(teste);
+    // } else {
+    //   console.log('sem itens no carrinho');
+    // }
     return (
       <div>
         {carrinho.length === 0 && (
@@ -21,6 +31,35 @@ class ShoppingCart extends React.Component {
               <p data-testid="shopping-cart-product-quantity">
                 {item.quantidade}
               </p>
+              <button
+                type="button"
+                onClick={ () => onClickRemoverItem(item.title) }
+              >
+                Remover Item
+              </button>
+              <button
+                type="button"
+                onClick={ () => onClickAumentarQuantidade(item.title, item.price) }
+                data-testid="product-increase-quantity"
+              >
+                +
+              </button>
+              <button
+                type="button"
+                onClick={ () => onClickDiminuirQuantidade(
+                  item.title,
+                  item.quantidade,
+                  item.price,
+                ) }
+                data-testid="product-decrease-quantity"
+              >
+                -
+              </button>
+              <p>
+                {' '}
+                { item.total }
+                {' '}
+              </p>
             </div>
           ))}
       </div>
@@ -30,6 +69,9 @@ class ShoppingCart extends React.Component {
 
 ShoppingCart.propTypes = {
   carrinho: PropTypes.arrayOf(PropTypes.objectOf),
+  onClickRemoverItem: PropTypes.func.isRequired,
+  onClickDiminuirQuantidade: PropTypes.func.isRequired,
+  onClickAumentarQuantidade: PropTypes.func.isRequired,
 };
 
 ShoppingCart.defaultProps = {

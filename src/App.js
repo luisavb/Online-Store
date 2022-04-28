@@ -19,15 +19,47 @@ class App extends React.Component {
       price,
       thumbnail,
       quantidade: 1,
+      total: 0,
     };
 
     const checarItem = carrinho.some((i) => i.title === title);
     if (checarItem) {
       const adItem = carrinho.find((it) => it.title === title);
       adItem.quantidade += 1;
+      adItem.total = adItem.price + price;
+      // adItem.price += price;
     } else {
       carrinho.push(novoProduto);
     }
+  }
+
+  onClickRemoverItem = (title) => {
+    const { carrinho } = this.state;
+    const index = carrinho.find((e, i) => i.title === title);
+    carrinho.shift(carrinho[index]);
+    this.setState({
+      carrinho,
+    });
+  }
+
+  onClickDiminuirQuantidade = (title, quantidade, price) => {
+    if (quantidade === 1) return this.onClickRemoverItem(title);
+    const { carrinho } = this.state;
+    const itemRemove = carrinho.find((i) => i.title === title);
+    itemRemove.quantidade -= 1;
+    console.log(price, itemRemove.price);
+    itemRemove.total -= price;
+    // console.log(itemRemove.price);
+    this.setState({ carrinho });
+  }
+
+  onClickAumentarQuantidade = (title, price) => {
+    const { carrinho } = this.state;
+    const itemAdiciona = carrinho.find((i) => i.title === title);
+    itemAdiciona.quantidade += 1;
+    itemAdiciona.total += price;
+    console.log(price, itemAdiciona.price);
+    this.setState({ carrinho });
   }
 
   render() {
@@ -51,6 +83,9 @@ class App extends React.Component {
               <ShoppingCart
                 { ...props }
                 carrinho={ carrinho }
+                onClickRemoverItem={ this.onClickRemoverItem }
+                onClickDiminuirQuantidade={ this.onClickDiminuirQuantidade }
+                onClickAumentarQuantidade={ this.onClickAumentarQuantidade }
               />
             ) }
           />
