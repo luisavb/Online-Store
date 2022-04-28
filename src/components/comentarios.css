@@ -1,11 +1,11 @@
 .comentario {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 3px;
-    margin-bottom: 15px;
-    background-color: rgb(225, 231, 231);
+  display: flex;
+  flex-wrap: wrap;
+  background-color: rgb(225, 231, 231);
+  margin-bottom: 15px;
+  padding: 3px;
 }
 
 .comentario p {
-    margin-left: 20px;
+  margin-left: 20px;
 }
