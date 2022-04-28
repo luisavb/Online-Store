@@ -113,7 +113,7 @@ class ProductDetail extends React.Component {
           />
           <button
             type="submit"
-            data-testid="edit-button-save"
+            data-testid="submit-review-btn"
             onClick={ this.buttonLocalStorage }
           >
             Salvar?
