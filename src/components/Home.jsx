@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import {
   getCategories,
   getProductsFromCategoryAndQuery,
-  getProductDetail,
 } from '../services/api';
 import CardItem from './CardItem';
 // import ShoppingCart from './ShoppingCart';
@@ -18,7 +18,6 @@ class Home extends React.Component {
       loading: false,
       botaoCategoria: false,
       resultadoBotaoCategoria: [],
-      carrinho: [],
     };
   }
 
@@ -50,7 +49,10 @@ class Home extends React.Component {
   };
 
   pesquisarCategoria = async (categoria) => {
-    const resultadoPesquisa = await getProductsFromCategoryAndQuery(categoria, '');
+    const resultadoPesquisa = await getProductsFromCategoryAndQuery(
+      categoria,
+      '',
+    );
     console.log(resultadoPesquisa.results);
     // console.log(categoria);
     this.setState({
@@ -58,20 +60,6 @@ class Home extends React.Component {
       resultadoBotaoCategoria: resultadoPesquisa.results,
     });
   };
-
-  onClickColocaCarrinho = async (id) => {
-    // console.log('clicou');
-    const productDetail = await getProductDetail(id);
-    // console.log(productDetail);
-    this.setState((estadoAnterior) => {
-      const teste = estadoAnterior.carrinho;
-      return ({
-        carrinho: [...teste, productDetail],
-      });
-    });
-    const { carrinho } = this.state;
-    localStorage.setItem('teste', carrinho);
-  }
 
   render() {
     const {
@@ -81,8 +69,8 @@ class Home extends React.Component {
       loading,
       botaoCategoria,
       resultadoBotaoCategoria,
-      carrinho,
     } = this.state;
+    const { onClickColocaCarrinho } = this.props;
     return (
       <div>
         <label htmlFor="text" data-testid="home-initial-message">
@@ -99,7 +87,7 @@ class Home extends React.Component {
         <button onClick={ this.onClick } type="button" data-testid="query-button">
           Pesquisar
         </button>
-        <Link data-testid="shopping-cart-button"  to={{ pathname: "/shopping-cart", state: { itens: {carrinho} } } }>
+        <Link data-testid="shopping-cart-button" to="/shopping-cart">
           Carrinho
         </Link>
         {/* <ShoppingCart itens={ carrinho } /> */}
@@ -124,7 +112,11 @@ class Home extends React.Component {
               <CardItem
                 key={ elemento.title }
                 item={ elemento }
-                onClickColocaCarrinho={ () => this.onClickColocaCarrinho(elemento.id) }
+                onClickColocaCarrinho={ () => onClickColocaCarrinho(
+                  elemento.title,
+                  elemento.price,
+                  elemento.thumbnail,
+                ) }
               />
             ))}
           </section>
@@ -136,7 +128,11 @@ class Home extends React.Component {
               <CardItem
                 key={ index }
                 item={ categoria }
-                onClickColocaCarrinho={ () => this.onClickColocaCarrinho(categoria.id) }
+                onClickColocaCarrinho={ () => onClickColocaCarrinho(
+                  categoria.title,
+                  categoria.price,
+                  categoria.thumbnail,
+                ) }
               />
             ))}
           </>
@@ -145,5 +141,14 @@ class Home extends React.Component {
     );
   }
 }
+Home.propTypes = {
+  onClickColocaCarrinho: PropTypes.func.isRequired,
+  // itens: PropTypes.shape({
+  //   title: PropTypes.string,
+  //   thumbnail: PropTypes.string,
+  //   price: PropTypes.number,
+  //   id: PropTypes.string,
+  // }).isRequired,
+};
 
 export default Home;

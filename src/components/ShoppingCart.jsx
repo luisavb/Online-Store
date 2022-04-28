@@ -1,15 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useLocation } from 'react-router-dom';
+
 // import { useParams } from 'react-router-dom';
 
-function ShoppingCart () {
-
+class ShoppingCart extends React.Component {
   // const { handle } = useParams();
-  const location = useLocation();
-  const { itens: { carrinho } } = location.state;
-
-  console.log(carrinho);
 
   // constructor(){
   //   super()
@@ -18,38 +13,38 @@ function ShoppingCart () {
   //   }
   // }
   // render() {
-    // const { location: { state: { itens } } } = this.props;
-    // const location = useLocation()
-    // const { itens } = location.state;
-    // const { itens } = this.props;
-
+  // const { location: { state: { itens } } } = this.props;
+  // const location = useLocation()
+  // const { itens } = location.state;
+  // const { itens } = this.props;
+  render() {
+    const { carrinho } = this.props;
     return (
       <div>
         {!carrinho && (
-          <p
-            data-testid="shopping-cart-empty-message"
-          >
+          <p data-testid="shopping-cart-empty-message">
             Seu carrinho está vazio
           </p>
         )}
-        {carrinho && (
-          carrinho.map((item) => (
-            <div key={ item.id }>
-              <p data-testid="shopping-cart-product-name" >
-                { item.title }
-              </p>
+        {carrinho
+          && carrinho.map((item, index) => (
+            <div key={ index }>
+              <p data-testid="shopping-cart-product-name">{item.title}</p>
               <img src={ item.thumbnail } alt={ item.title } />
-              <p>
-                { item.price }
+              <p>{item.price}</p>
+              <p data-testid="shopping-cart-product-quantity">
+                {item.quantidade}
               </p>
             </div>
-          )))}
-      </div>);
+          ))}
+      </div>
+    );
   }
+}
 // }
 
 ShoppingCart.propTypes = {
-  itens: PropTypes.array.isRequired,
+  carrinho: PropTypes.arrayOf.isRequired,
   // itens: PropTypes.shape({
   //   title: PropTypes.string,
   //   thumbnail: PropTypes.string,
