@@ -4,19 +4,7 @@ import PropTypes from 'prop-types';
 // import { useParams } from 'react-router-dom';
 
 class ShoppingCart extends React.Component {
-  // const { handle } = useParams();
 
-  // constructor(){
-  //   super()
-  //   this.state = {
-  //     itens: [],
-  //   }
-  // }
-  // render() {
-  // const { location: { state: { itens } } } = this.props;
-  // const location = useLocation()
-  // const { itens } = location.state;
-  // const { itens } = this.props;
   render() {
     const { carrinho } = this.props;
     return (
@@ -41,7 +29,7 @@ class ShoppingCart extends React.Component {
     );
   }
 }
-// }
+
 
 ShoppingCart.propTypes = {
   carrinho: PropTypes.arrayOf.isRequired,
