@@ -1,7 +1,7 @@
 .comentario {
+  background-color: rgb(225, 231, 231);
   display: flex;
   flex-wrap: wrap;
-  background-color: rgb(225, 231, 231);
   margin-bottom: 15px;
   padding: 3px;
 }
