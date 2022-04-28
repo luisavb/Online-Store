@@ -1,20 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// import { useParams } from 'react-router-dom';
-
 class ShoppingCart extends React.Component {
-
   render() {
     const { carrinho } = this.props;
+    console.log(carrinho.length);
     return (
       <div>
-        {!carrinho && (
+        {carrinho.length === 0 && (
           <p data-testid="shopping-cart-empty-message">
             Seu carrinho está vazio
           </p>
         )}
-        {carrinho
+        {carrinho !== 0
           && carrinho.map((item, index) => (
             <div key={ index }>
               <p data-testid="shopping-cart-product-name">{item.title}</p>
@@ -30,15 +28,12 @@ class ShoppingCart extends React.Component {
   }
 }
 
-
 ShoppingCart.propTypes = {
-  carrinho: PropTypes.arrayOf.isRequired,
-  // itens: PropTypes.shape({
-  //   title: PropTypes.string,
-  //   thumbnail: PropTypes.string,
-  //   price: PropTypes.number,
-  //   id: PropTypes.string,
-  // }).isRequired,
+  carrinho: PropTypes.arrayOf(PropTypes.objectOf),
+};
+
+ShoppingCart.defaultProps = {
+  carrinho: () => [],
 };
 
 export default ShoppingCart;

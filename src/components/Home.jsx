@@ -53,7 +53,7 @@ class Home extends React.Component {
       categoria,
       '',
     );
-    console.log(resultadoPesquisa.results);
+    // console.log(resultadoPesquisa.results);
     // console.log(categoria);
     this.setState({
       botaoCategoria: true,
@@ -90,10 +90,6 @@ class Home extends React.Component {
         <Link data-testid="shopping-cart-button" to="/shopping-cart">
           Carrinho
         </Link>
-        {/* <ShoppingCart itens={ carrinho } /> */}
-        {/* <Link to="/shopping-cart" props={{ itens: {carrinho} }} data-testid="shopping-cart-button" >
-          carrinho de compras
-        </Link> */}
         <aside>
           {categorias.map(({ id, name }) => (
             <button
@@ -110,7 +106,7 @@ class Home extends React.Component {
           <section>
             {pesquisa.map((elemento) => (
               <CardItem
-                key={ elemento.title }
+                key={ elemento.id }
                 item={ elemento }
                 onClickColocaCarrinho={ () => onClickColocaCarrinho(
                   elemento.title,
@@ -124,9 +120,9 @@ class Home extends React.Component {
         {/* {!loading && <p>Nenhum produto foi encontrado</p>} */}
         {botaoCategoria && (
           <>
-            {resultadoBotaoCategoria.map((categoria, index) => (
+            {resultadoBotaoCategoria.map((categoria) => (
               <CardItem
-                key={ index }
+                key={ categoria.id }
                 item={ categoria }
                 onClickColocaCarrinho={ () => onClickColocaCarrinho(
                   categoria.title,
