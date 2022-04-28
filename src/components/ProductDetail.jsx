@@ -28,6 +28,8 @@ class ProductDetail extends React.Component {
 
   render() {
     const { produto } = this.state;
+
+    const { onClickColocaCarrinho } = this.props;
     // console.log(product.base_price);
     return (
       <div>
@@ -40,6 +42,19 @@ class ProductDetail extends React.Component {
           <li>{produto.condition}</li>
           <li>{produto.status}</li>
         </ul>
+
+        <button
+          onClick={ () => onClickColocaCarrinho(
+            produto.title,
+            produto.price,
+            produto.thumbnail,
+          ) }
+          type="button"
+          data-testid="product-detail-add-to-cart"
+        >
+          Adicionar ao carrinho
+        </button>
+
         <Link to="/shopping-cart" data-testid="shopping-cart-button">
           carrinho de compras
         </Link>
@@ -54,6 +69,7 @@ ProductDetail.propTypes = {
       id: propTypes.string,
     }),
   }).isRequired,
+  onClickColocaCarrinho: propTypes.func.isRequired,
 };
 
 export default ProductDetail;

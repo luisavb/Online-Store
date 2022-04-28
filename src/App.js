@@ -54,7 +54,14 @@ class App extends React.Component {
               />
             ) }
           />
-          <Route path="/product-detail/:id" component={ ProductDetail } />
+          <Route
+            path="/product-detail/:id"
+            render={ (props) => (
+              <ProductDetail
+                { ...props }
+                onClickColocaCarrinho={ this.onClickColocaCarrinho }
+              />) }
+          />
         </Switch>
       </BrowserRouter>
     );
