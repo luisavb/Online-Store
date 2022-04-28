@@ -2,6 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { getProductDetail } from '../services/api';
+import './comentarios.css';
 
 class ProductDetail extends React.Component {
   constructor() {
@@ -13,6 +14,7 @@ class ProductDetail extends React.Component {
       email: '',
       texto: '',
       nota: '',
+      comentarios: [],
     };
     this.changeInput = this.changeInput.bind(this);
   }
@@ -20,6 +22,13 @@ class ProductDetail extends React.Component {
   componentDidMount() {
     const { match: { params: { id } } } = this.props;
     this.PegaProduto(id);
+    // verifica se há rewiews no localStorage, senão cria um array vazio.
+    if (!JSON.parse(localStorage.getItem('reviews'))) {
+      localStorage.setItem('reviews', JSON.stringify([]));
+    }
+    //  pega os reviews no localStorage e seta no State.
+    const reviews = JSON.parse(localStorage.getItem('reviews'));
+    this.setState({ comentarios: reviews });
   }
 
   PegaProduto = async (produtoId) => {
@@ -30,10 +39,25 @@ class ProductDetail extends React.Component {
     });
   }
 
-  buttonLocalStorage = () => {
+  buttonLocalStorage = (event) => {
+    event.preventDefault();
     const { email, texto, nota } = this.state;
     const form = { email, texto, nota };
-    localStorage.setItem('review', JSON.stringify(form));
+    // verifica se há rewiews no localStorage, senão cria um array vazio.
+    if (!JSON.parse(localStorage.getItem('reviews'))) {
+      localStorage.setItem('reviews', JSON.stringify([]));
+    }
+    // pega os reviews no localStorage e seta o que já tinha com o novo comentario.
+    // alterado os reviews para receber array de objetos e nao somente um objeto.
+    let reviews = JSON.parse(localStorage.getItem('reviews'));
+    localStorage.setItem('reviews', JSON.stringify([...reviews, form]));
+    reviews = JSON.parse(localStorage.getItem('reviews'));
+    this.setState({
+      email: '',
+      texto: '',
+      nota: '',
+      comentarios: reviews,
+    });
   }
 
   changeInput({ target }) {
@@ -46,7 +70,7 @@ class ProductDetail extends React.Component {
   }
 
   render() {
-    const { produto, email, texto } = this.state;
+    const { produto, email, texto, comentarios } = this.state;
 
     const limite = ['1', '2', '3', '4', '5'];
 
@@ -116,10 +140,23 @@ class ProductDetail extends React.Component {
             data-testid="submit-review-btn"
             onClick={ this.buttonLocalStorage }
           >
-            Salvar?
+            Avaliar
           </button>
         </form>
-        {localStorage.getItem('review')}
+        {comentarios.map((comentario, index) => (
+          <div className="comentario" key={ comentario.email + index }>
+            <p>
+              { comentario.email }
+            </p>
+            <p>
+              { comentario.nota }
+            </p>
+            <p>
+              { comentario.texto }
+            </p>
+          </div>
+        ))}
+        {/* {localStorage.getItem('reviews')} */}
 
       </div>
     );
