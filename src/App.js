@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './components/Home';
 import ShoppingCart from './components/ShoppingCart';
 import ProductDetail from './components/ProductDetail';
+import Checkout from './components/Checkout';
 
 class App extends React.Component {
   constructor() {
@@ -93,6 +94,14 @@ class App extends React.Component {
               <ProductDetail
                 { ...props }
                 onClickColocaCarrinho={ this.onClickColocaCarrinho }
+              />) }
+          />
+          <Route
+            path="/checkout"
+            render={ (props) => (
+              <Checkout
+                { ...props }
+                carrinho={ carrinho }
               />) }
           />
         </Switch>
