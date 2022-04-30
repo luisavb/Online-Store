@@ -9,18 +9,18 @@ class ProductDetail extends React.Component {
     super();
 
     this.state = {
-      produto: {},
+      produto: {}, // recebe o produto
       // avaliação: false,
       email: '',
       texto: '',
       nota: '',
-      comentarios: [],
+      comentarios: [], // recebe os comentarios dos antigos compradores
     };
     this.changeInput = this.changeInput.bind(this);
   }
 
   componentDidMount() {
-    const { match: { params: { id } } } = this.props;
+    const { match: { params: { id } } } = this.props; // esse é o id[aparece no browser] do produto detalhado
     this.PegaProduto(id);
     // verifica se há rewiews no localStorage, senão cria um array vazio.
     if (!JSON.parse(localStorage.getItem('reviews'))) {
@@ -31,6 +31,7 @@ class ProductDetail extends React.Component {
     this.setState({ comentarios: reviews });
   }
 
+  // função que pega os detalhes do produto em analise e seta a chave produto do state
   PegaProduto = async (produtoId) => {
     const productDetail = await getProductDetail(produtoId);
     // console.log(productDetail);
@@ -43,15 +44,15 @@ class ProductDetail extends React.Component {
     event.preventDefault();
     const { email, texto, nota } = this.state;
     const form = { email, texto, nota };
-    // verifica se há rewiews no localStorage, senão cria um array vazio.
+    // verifica se há reviews no localStorage, senão cria um array vazio.
     if (!JSON.parse(localStorage.getItem('reviews'))) {
       localStorage.setItem('reviews', JSON.stringify([]));
     }
     // pega os reviews no localStorage e seta o que já tinha com o novo comentario.
     // alterado os reviews para receber array de objetos e nao somente um objeto.
     let reviews = JSON.parse(localStorage.getItem('reviews'));
-    localStorage.setItem('reviews', JSON.stringify([...reviews, form]));
-    reviews = JSON.parse(localStorage.getItem('reviews'));
+    localStorage.setItem('reviews', JSON.stringify([...reviews, form])); // faço spread operator para poder adicionar os novos comentarios sem apagar os antigos
+    reviews = JSON.parse(localStorage.getItem('reviews')); // pego os novos comentarios e adiciono no state
     this.setState({
       email: '',
       texto: '',
@@ -156,7 +157,6 @@ class ProductDetail extends React.Component {
             </p>
           </div>
         ))}
-        {/* {localStorage.getItem('reviews')} */}
 
       </div>
     );
