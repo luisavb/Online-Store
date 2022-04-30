@@ -15,8 +15,8 @@ class Checkout extends React.Component {
       cep: '',
       endereco: '',
       metodo: '',
-      redirecionar: true,
-      mensagem: true,
+      redirecionar: true, // caso os itens estjam todos preenchidos, ira redirecionar para a pagina principal do site
+      mensagem: true, // caso seja falso, ira mostrar uma mensagem pedindo para preencher os requisitos
     };
     this.changeInput = this.changeInput.bind(this);
   }
