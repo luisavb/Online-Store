@@ -35,6 +35,9 @@ class App extends React.Component {
       carrinho.push(novoProduto);
     }
   }
+  // função para remover o item na pagina do carrinho de compras
+  // nessa função, procuro achar se existe um produto dentro do carrinho que possua o titulo em questao, e com o  findIndex retorno a posição dele
+  // apos isso, uso splice para retirar apenas um elemento a partir da posição salva na constante index e seto o carrinho sem o produto
 
   onClickRemoverItem = (title) => {
     const { carrinho } = this.state;
@@ -42,6 +45,10 @@ class App extends React.Component {
     carrinho.splice(index, 1);
     this.setState({ carrinho });
   }
+  // função para diminuir a quantidade de um produto especificaçoes
+  // caso a quantidade do produto seja 1, chamo a função acima para remove-lo do carrinho
+  // crio uma constante para receber o produto do carrinho que tenha o titulo igual ao procurado
+  // a partir dessa constante criada, chamo a sua chave quantidade para reduzir em 1 os elementos desse produto e chamo a chave total para diminuir o valor do preço individual do produto e seto a nova situação do carrinho
 
   onClickDiminuirQuantidade = (title, quantidade, price) => {
     if (quantidade === 1) return this.onClickRemoverItem(title);
@@ -54,6 +61,10 @@ class App extends React.Component {
     this.setState({ carrinho });
   }
 
+  // função criada para aumentar a quantidade do produto no carrinho
+  // crio uma constante para receber o produto do carrinho que seja igual ao titulo que procuramos
+  // com essa constante, utilizo a sua chave quantidade para aumentar os elementos do produto em analise e utilizo a sua chave total para aumentar o seu valor por meio do price individual
+  // apos isso, seto a nova situação do carrinho
   onClickAumentarQuantidade = (title, price) => {
     const { carrinho } = this.state;
     const itemAdiciona = carrinho.find((i) => i.title === title);
@@ -62,6 +73,7 @@ class App extends React.Component {
     console.log(price, itemAdiciona.price);
     this.setState({ carrinho });
   }
+  // passo as ultimas 3 funçoes acima como props para o shoppingcart e o state carrinho tambem
 
   render() {
     const { carrinho } = this.state;
