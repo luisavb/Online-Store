@@ -4,28 +4,6 @@ import { Link } from 'react-router-dom';
 // import { getProductDetail } from '../services/api';
 
 class CardItem extends React.Component {
-  // constructor() {
-  //   super();
-
-  //   this.state = {
-  //     carrinho: [],
-  //   };
-  // this.onInputChange = this.onInputChange.bind(this);
-  // }
-
-  // onClickColocaCarrinho = async () => {
-  //   // console.log('clicou');
-  //   const { item } = this.props;
-  //   const productDetail = await getProductDetail(item.id);
-  //   // console.log(productDetail);
-  //   this.setState((estadoAnterior) => {
-  //     const teste = estadoAnterior.carrinho;
-  //     return ({
-  //       carrinho: [...teste, productDetail],
-  //     });
-  //   });
-  // }
-
   render() {
     const { item, onClickColocaCarrinho } = this.props;
     return (

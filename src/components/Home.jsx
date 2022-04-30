@@ -11,12 +11,12 @@ class Home extends React.Component {
   constructor() {
     super();
     this.state = {
-      produto: '',
+      produto: '', // é o produto que escrevo dentro do input
       categorias: [], // array das diversas categorias disponibilizadas pela API
-      pesquisa: [],
-      loading: false,
+      pesquisa: [], // pega a pesquisa ao apertar o botao pesquisar
+      loading: false, // utilizo como condicional para mostrar o resultado da pesquisa
       botaoCategoria: false,
-      resultadoBotaoCategoria: [],
+      resultadoBotaoCategoria: [], // array a ser utilizado para receber o resultado das pesquisas ao clicar no botao da categoria
     };
   }
 
@@ -31,11 +31,16 @@ class Home extends React.Component {
     // console.log(resultado);
   };
 
+  // função generica que serve para, ao começar a digitar no local em que foi colocada, seja alterada a chave criada para recebe-la dentro do state
   onChange = ({ target }) => {
     const { name, value } = target;
     this.setState({ [name]: value });
   };
 
+  // essa função é complementanda pela função onChange acima
+  // ao utilizar o onChange no campo de digitar para pesquisar, o state produto recebe os valores que estao sendo escritos
+  // com isso, a função onClick pega o state produto e o utiliza como parametro da função API abaixo
+  // Apos chama a função assincrona, eu pego o resultado e coloco dentro da chave pesquisa
   onClick = async () => {
     const { produto } = this.state;
     const resultadoPesquisa = await getProductsFromCategoryAndQuery(
@@ -91,20 +96,24 @@ class Home extends React.Component {
           Carrinho
         </Link>
         <aside>
-          {categorias.map(({ id, name }) => ( // faço um map em todas as categorias disponibilizadas para que cada uma tenha um formato de botao e o seu atributo especifico
-            <button
-              data-testid="category"
-              type="button"
-              key={ id }
-              onClick={ () => this.pesquisarCategoria(id) }
-            >
-              {name}
-            </button>
-          ))}
+          {categorias.map(
+            (
+              { id, name }, // faço um map em todas as categorias disponibilizadas para que cada uma tenha um formato de botao e o seu atributo especifico
+            ) => (
+              <button
+                data-testid="category"
+                type="button"
+                key={ id }
+                onClick={ () => this.pesquisarCategoria(id) }
+              >
+                {name}
+              </button>
+            ),
+          )}
         </aside>
         {loading && (
           <section>
-            {pesquisa.map((elemento) => (
+            {pesquisa.map((elemento) => ( // uso a hof map para o cardItem mostrar as especificaçoes desejadas para cada elemento da pesquisa
               <CardItem
                 key={ elemento.id }
                 item={ elemento }
