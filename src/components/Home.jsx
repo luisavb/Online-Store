@@ -15,7 +15,7 @@ class Home extends React.Component {
       categorias: [], // array das diversas categorias disponibilizadas pela API
       pesquisa: [], // pega a pesquisa ao apertar o botao pesquisar
       loading: false, // utilizo como condicional para mostrar o resultado da pesquisa
-      botaoCategoria: false,
+      botaoCategoria: false, // utilizo como condicional para mostrar o resultado ao clicar no botao da categoria
       resultadoBotaoCategoria: [], // array a ser utilizado para receber o resultado das pesquisas ao clicar no botao da categoria
     };
   }
@@ -53,7 +53,7 @@ class Home extends React.Component {
     });
   };
 
-  // função utilizada para buscar as categorias a serem mostradas na pagina principal a qual sera utilizada dentro do map
+  // função utilizada para buscar as categorias a serem mostradas na pagina principal a qual sera utilizada dentro do map quando eu aperto o botao da categoria especifica
   pesquisarCategoria = async (categoria) => {
     const resultadoPesquisa = await getProductsFromCategoryAndQuery(
       categoria,
@@ -98,13 +98,13 @@ class Home extends React.Component {
         <aside>
           {categorias.map(
             (
-              { id, name }, // faço um map em todas as categorias disponibilizadas para que cada uma tenha um formato de botao e o seu atributo especifico
+              { id, name }, // faço um map em todas as categorias disponibilizadas para que cada uma tenha um formato de botao e o seu atributo especifico. Ao clicar no botao da categoria especifica
             ) => (
               <button
                 data-testid="category"
                 type="button"
                 key={ id }
-                onClick={ () => this.pesquisarCategoria(id) }
+                onClick={ () => this.pesquisarCategoria(id) } // ao clicar no botao, vai salvar todos os elementos da categoria no state resultadoBotaoCategoria
               >
                 {name}
               </button>
@@ -127,7 +127,7 @@ class Home extends React.Component {
           </section>
         )}
         {/* {!loading && <p>Nenhum produto foi encontrado</p>} */}
-        {botaoCategoria && (
+        {botaoCategoria && ( // vira true o botaoCategoria ao clicar no botao da categoria especifica. Com isso, faço um map para que mostra para cada elemento os detalhes desejados
           <>
             {resultadoBotaoCategoria.map((categoria) => (
               <CardItem

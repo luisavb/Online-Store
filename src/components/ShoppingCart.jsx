@@ -9,13 +9,7 @@ class ShoppingCart extends React.Component {
       onClickRemoverItem,
       onClickDiminuirQuantidade,
       onClickAumentarQuantidade } = this.props;
-    // if (carrinho.length > 0) {
-    //   let teste = [];
-    //   carrinho.forEach((i) => { teste += i.price; });
-    //   console.log(teste);
-    // } else {
-    //   console.log('sem itens no carrinho');
-    // }
+
     return (
       <div>
         {carrinho.length === 0 && ( // caso o carrinho esteja vazio, aparecera esta msg

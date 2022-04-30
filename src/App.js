@@ -13,23 +13,25 @@ class App extends React.Component {
     };
   }
 
-  onClickColocaCarrinho = (title, price, thumbnail) => {
-    const { carrinho } = this.state;
-    const novoProduto = {
+  onClickColocaCarrinho = (title, price, thumbnail) => { // requisito 8
+    const { carrinho } = this.state; // pego os produtos colocados no carrinho
+    const novoProduto = { // crio uma nova constante em que será colocados os paramentros colocados na função em questao
       title,
       price,
       thumbnail,
       quantidade: 1,
       total: price,
     };
-
+    // faço uma hof que retornara um valor booleano true ou false caso exista um elemento do carrinho que possua um titulo igual ao titulo em analise
     const checarItem = carrinho.some((i) => i.title === title);
+    // caso ja exista um produto no carrinho que ja tenho o mesmo titulo, retornando o valor true, peço para achar outro produto que possua o mesmo titulo e aumentar mais 1 no chave quantidade e retornar os preços somados dos produtos
     if (checarItem) {
       const adItem = carrinho.find((it) => it.title === title);
       adItem.quantidade += 1;
       adItem.total = adItem.price + price;
       // adItem.price += price;
     } else {
+      // caso o carrinho nao possua um produto com esse titulo, peço que este produto seja adicionado a chave carrinho
       carrinho.push(novoProduto);
     }
   }

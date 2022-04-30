@@ -23,7 +23,7 @@ class CardItem extends React.Component {
             Mais detalhes...
           </Link>
           <button
-            onClick={ onClickColocaCarrinho }
+            onClick={ onClickColocaCarrinho } // requisito 8
             type="button"
             data-testid="product-add-to-cart"
           >
