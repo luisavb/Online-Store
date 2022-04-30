@@ -18,7 +18,7 @@ class ShoppingCart extends React.Component {
     // }
     return (
       <div>
-        {carrinho.length === 0 && (
+        {carrinho.length === 0 && ( // caso o carrinho esteja vazio, aparecera esta msg
           <p data-testid="shopping-cart-empty-message">
             Seu carrinho está vazio
           </p>

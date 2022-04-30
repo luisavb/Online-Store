@@ -9,7 +9,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      carrinho: [],
+      carrinho: [], // recebe os produtos a serem colocados no carrinho de compras
     };
   }
 
@@ -81,7 +81,7 @@ class App extends React.Component {
             render={ (props) => (
               <ShoppingCart
                 { ...props }
-                carrinho={ carrinho }
+                carrinho={ carrinho } // os elementos adicionados pelo carrinho
                 onClickRemoverItem={ this.onClickRemoverItem }
                 onClickDiminuirQuantidade={ this.onClickDiminuirQuantidade }
                 onClickAumentarQuantidade={ this.onClickAumentarQuantidade }

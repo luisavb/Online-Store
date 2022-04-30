@@ -6,14 +6,13 @@ import {
   getProductsFromCategoryAndQuery,
 } from '../services/api';
 import CardItem from './CardItem';
-// import ShoppingCart from './ShoppingCart';
 
 class Home extends React.Component {
   constructor() {
     super();
     this.state = {
       produto: '',
-      categorias: [],
+      categorias: [], // array das diversas categorias disponibilizadas pela API
       pesquisa: [],
       loading: false,
       botaoCategoria: false,
@@ -25,6 +24,7 @@ class Home extends React.Component {
     this.pegarCategoriasApi();
   }
 
+  // a função abaixo utiliza a função disponibilizada pela API para pegar as categorias e as adiciono no state. Eu a coloco dentro do componentDidMount para que elas apareçam a partir do momento em que renderizo a pagina
   pegarCategoriasApi = async () => {
     const resultado = await getCategories();
     this.setState({ categorias: resultado });
@@ -48,13 +48,13 @@ class Home extends React.Component {
     });
   };
 
+  // função utilizada para buscar as categorias a serem mostradas na pagina principal a qual sera utilizada dentro do map
   pesquisarCategoria = async (categoria) => {
     const resultadoPesquisa = await getProductsFromCategoryAndQuery(
       categoria,
       '',
     );
-    // console.log(resultadoPesquisa.results);
-    // console.log(categoria);
+
     this.setState({
       botaoCategoria: true,
       resultadoBotaoCategoria: resultadoPesquisa.results,
@@ -91,7 +91,7 @@ class Home extends React.Component {
           Carrinho
         </Link>
         <aside>
-          {categorias.map(({ id, name }) => (
+          {categorias.map(({ id, name }) => ( // faço um map em todas as categorias disponibilizadas para que cada uma tenha um formato de botao e o seu atributo especifico
             <button
               data-testid="category"
               type="button"
@@ -139,12 +139,6 @@ class Home extends React.Component {
 }
 Home.propTypes = {
   onClickColocaCarrinho: PropTypes.func.isRequired,
-  // itens: PropTypes.shape({
-  //   title: PropTypes.string,
-  //   thumbnail: PropTypes.string,
-  //   price: PropTypes.number,
-  //   id: PropTypes.string,
-  // }).isRequired,
 };
 
 export default Home;
