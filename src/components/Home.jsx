@@ -6,6 +6,7 @@ import {
   getProductsFromCategoryAndQuery,
 } from '../services/api';
 import CardItem from './CardItem';
+import './Home.css';
 
 class Home extends React.Component {
   constructor() {
@@ -77,10 +78,20 @@ class Home extends React.Component {
     } = this.state;
     const { onClickColocaCarrinho } = this.props;
     return (
-      <div>
-        <label htmlFor="text" data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
+      <div className="container-home">
+        <div className="carrinho">
+          <h1 id="trybewarts-header-title">Online Store</h1>
+          <Link
+            data-testid="shopping-cart-button"
+            to="/shopping-cart"
+          >
+            <img src="./shopping-cart.png" alt="carrinho" width="40px" />
+          </Link>
+        </div>
+        <label className="label-input" htmlFor="text" data-testid="home-initial-message">
+          <h3>Digite algum termo de pesquisa ou escolha uma categoria.</h3>
           <input
+            className="input-home"
             data-testid="query-input"
             onChange={ this.onChange }
             value={ produto }
@@ -89,18 +100,19 @@ class Home extends React.Component {
             id="text"
           />
         </label>
-        <button onClick={ this.onClick } type="button" data-testid="query-button">
-          Pesquisar
-        </button>
-        <Link data-testid="shopping-cart-button" to="/shopping-cart">
-          Carrinho
-        </Link>
-        <aside>
+        <div className="button-div">
+          <button className="button-home" onClick={ this.onClick } type="button" data-testid="query-button">
+            Pesquisar
+          </button>
+        </div>
+        <aside className="aside-home">
           {categorias.map(
             (
               { id, name }, // faço um map em todas as categorias disponibilizadas para que cada uma tenha um formato de botao e o seu atributo especifico. Ao clicar no botao da categoria especifica
             ) => (
               <button
+                className="button-home"
+                id="button-home2"
                 data-testid="category"
                 type="button"
                 key={ id }
@@ -112,7 +124,7 @@ class Home extends React.Component {
           )}
         </aside>
         {loading && (
-          <section>
+          <section className="section-home">
             {pesquisa.map((elemento) => ( // uso a hof map para o cardItem mostrar as especificaçoes desejadas para cada elemento da pesquisa
               <CardItem
                 key={ elemento.id }
