@@ -1,5 +1,6 @@
 :root {
-  --main-color: #f2f2f2;
+  /* --main-color: #f2f2f2; */
+  --main-color: rgb(0,0,0,.1)
 }
 
 body {

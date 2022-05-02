@@ -15,9 +15,9 @@ class Home extends React.Component {
       produto: '', // é o produto que escrevo dentro do input
       categorias: [], // array das diversas categorias disponibilizadas pela API
       pesquisa: [], // pega a pesquisa ao apertar o botao pesquisar
-      loading: false, // utilizo como condicional para mostrar o resultado da pesquisa
-      botaoCategoria: false, // utilizo como condicional para mostrar o resultado ao clicar no botao da categoria
-      resultadoBotaoCategoria: [], // array a ser utilizado para receber o resultado das pesquisas ao clicar no botao da categoria
+      loading: null, // utilizo como condicional para mostrar o resultado da pesquisa
+      // botaoCategoria: false, // utilizo como condicional para mostrar o resultado ao clicar no botao da categoria
+      // resultadoBotaoCategoria: [], // array a ser utilizado para receber o resultado das pesquisas ao clicar no botao da categoria
     };
   }
 
@@ -48,10 +48,14 @@ class Home extends React.Component {
       '',
       produto,
     );
-    this.setState({
-      pesquisa: resultadoPesquisa.results,
-      loading: true,
-    });
+    if (resultadoPesquisa.results.length > 0) {
+      this.setState({
+        pesquisa: resultadoPesquisa.results,
+        loading: true,
+      });
+    } else {
+      this.setState({ loading: false });
+    }
   };
 
   // função utilizada para buscar as categorias a serem mostradas na pagina principal a qual sera utilizada dentro do map quando eu aperto o botao da categoria especifica
@@ -62,8 +66,8 @@ class Home extends React.Component {
     );
 
     this.setState({
-      botaoCategoria: true,
-      resultadoBotaoCategoria: resultadoPesquisa.results,
+      loading: true,
+      pesquisa: resultadoPesquisa.results,
     });
   };
 
@@ -73,87 +77,94 @@ class Home extends React.Component {
       produto,
       pesquisa,
       loading,
-      botaoCategoria,
-      resultadoBotaoCategoria,
+      // botaoCategoria,
+      // resultadoBotaoCategoria,
     } = this.state;
     const { onClickColocaCarrinho } = this.props;
     return (
       <div className="container-home">
-        <div className="carrinho">
-          <h1 id="trybewarts-header-title">Online Store</h1>
+        <header className="carrinho">
+          <h1>Online Store</h1>
           <Link
             data-testid="shopping-cart-button"
             to="/shopping-cart"
           >
             <img src="./shopping-cart.png" alt="carrinho" width="40px" />
           </Link>
-        </div>
-        <label className="label-input" htmlFor="text" data-testid="home-initial-message">
-          <h3>Digite algum termo de pesquisa ou escolha uma categoria.</h3>
-          <input
-            className="input-home"
-            data-testid="query-input"
-            onChange={ this.onChange }
-            value={ produto }
-            name="produto"
-            type="text"
-            id="text"
-          />
-        </label>
-        <div className="button-div">
-          <button className="button-home" onClick={ this.onClick } type="button" data-testid="query-button">
-            Pesquisar
-          </button>
-        </div>
-        <aside className="aside-home">
-          {categorias.map(
-            (
-              { id, name }, // faço um map em todas as categorias disponibilizadas para que cada uma tenha um formato de botao e o seu atributo especifico. Ao clicar no botao da categoria especifica
-            ) => (
-              <button
-                className="button-home"
-                id="button-home2"
-                data-testid="category"
-                type="button"
-                key={ id }
-                onClick={ () => this.pesquisarCategoria(id) } // ao clicar no botao, vai salvar todos os elementos da categoria no state resultadoBotaoCategoria
-              >
-                {name}
-              </button>
-            ),
+        </header>
+        <section className="search">
+          <label className="label-input" htmlFor="text" data-testid="home-initial-message">
+            <h3 className="search-title">Digite algum termo de pesquisa ou escolha uma categoria.</h3>
+            <input
+              className="input-home"
+              data-testid="query-input"
+              onChange={ this.onChange }
+              value={ produto }
+              name="produto"
+              type="text"
+              id="text"
+            />
+          </label>
+          <div className="button-div">
+            <button className="button-home" onClick={ this.onClick } type="button" data-testid="query-button">
+              Pesquisar
+            </button>
+          </div>
+        </section>
+        <section className="categorias-produtos">
+          <aside className="aside-home">
+            {categorias.map(
+              (
+                { id, name }, // faço um map em todas as categorias disponibilizadas para que cada uma tenha um formato de botao e o seu atributo especifico. Ao clicar no botao da categoria especifica
+              ) => (
+                <button
+                  className="button-home"
+                  id="button-home2"
+                  data-testid="category"
+                  type="button"
+                  key={ id }
+                  onClick={ () => this.pesquisarCategoria(id) } // ao clicar no botao, vai salvar todos os elementos da categoria no state resultadoBotaoCategoria
+                >
+                  {name}
+                </button>
+              ),
+            )}
+          </aside>
+          {/* <div> */}
+          {loading && (
+            <section className="section-home">
+              {pesquisa.map((elemento) => ( // uso a hof map para o cardItem mostrar as especificaçoes desejadas para cada elemento da pesquisa
+                <CardItem
+                  key={ elemento.id }
+                  item={ elemento }
+                  onClickColocaCarrinho={ () => onClickColocaCarrinho(
+                    elemento.title,
+                    elemento.price,
+                    elemento.thumbnail,
+                  ) }
+                />
+              ))}
+            </section>
           )}
-        </aside>
-        {loading && (
-          <section className="section-home">
-            {pesquisa.map((elemento) => ( // uso a hof map para o cardItem mostrar as especificaçoes desejadas para cada elemento da pesquisa
-              <CardItem
-                key={ elemento.id }
-                item={ elemento }
-                onClickColocaCarrinho={ () => onClickColocaCarrinho(
-                  elemento.title,
-                  elemento.price,
-                  elemento.thumbnail,
-                ) }
-              />
-            ))}
-          </section>
-        )}
-        {/* {!loading && <p>Nenhum produto foi encontrado</p>} */}
-        {botaoCategoria && ( // vira true o botaoCategoria ao clicar no botao da categoria especifica. Com isso, faço um map para que mostra para cada elemento os detalhes desejados
-          <>
-            {resultadoBotaoCategoria.map((categoria) => (
-              <CardItem
-                key={ categoria.id }
-                item={ categoria }
-                onClickColocaCarrinho={ () => onClickColocaCarrinho(
-                  categoria.title,
-                  categoria.price,
-                  categoria.thumbnail,
-                ) }
-              />
-            ))}
-          </>
-        )}
+          {loading === null && <div className="section-home" />}
+          {loading === false && <p className="section-home">Nenhum produto foi encontrado</p>}
+          {/* {botaoCategoria && ( // vira true o botaoCategoria ao clicar no botao da categoria especifica. Com isso, faço um map para que mostra para cada elemento os detalhes desejados
+            <section className="section-home">
+              {resultadoBotaoCategoria.map((categoria) => (
+                <CardItem
+                  key={ categoria.id }
+                  item={ categoria }
+                  onClickColocaCarrinho={ () => onClickColocaCarrinho(
+                    categoria.title,
+                    categoria.price,
+                    categoria.thumbnail,
+                  ) }
+                />
+              ))}
+            </section>
+          )} */}
+          {/* </div> */}
+        </section>
       </div>
     );
   }

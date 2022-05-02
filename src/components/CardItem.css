@@ -1,14 +1,77 @@
 .button-cardItens {
-    width: 100%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  font-family: 'Times New Roman', Times, serif;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  background-color: #198754;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  width: 20vw;
+  border: none;
+  color: white;
+  padding: 10px;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  border-radius: 8px;
 }
-      
+
 .button-cardItens:hover {
-    background-color: #45a049;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.product {
+  background-color: white;
+  /* background-color: red; */
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  /* flex-shrink: 2; */
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 5px;
+  width: 45%;
+}
+
+.product:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.button-details {
+  font-family: 'Times New Roman', Times, serif;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  background-color: #E67A00;
+  margin-top: 20px;
+  width: 20vw;
+  border: none;
+  color: white;
+  padding: 10px;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  border-radius: 8px;
+}
+
+.button-details:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.title {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 30px;
+  /* margin-top: 50px */
+}
+
+.price {
+  font-size: 20px;
+  font-weight: 800;
 }

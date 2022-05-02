@@ -1,28 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import './CardItem.css';
 // import { getProductDetail } from '../services/api';
 
 class CardItem extends React.Component {
   render() {
     const { item, onClickColocaCarrinho } = this.props;
     return (
-      <div data-testid="product">
-        <p>
+      <div data-testid="product" className="product">
+        <h3 className="title">
           { item.title }
-        </p>
-        <img src={ item.thumbnail } alt={ item.title } />
-        <p>
-          { item.price }
+        </h3>
+        <img src={ item.thumbnail } alt={ item.title } width="150px" />
+        <p className="price">
+          {`R$: ${item.price}`}
         </p>
         <div>
           <Link
             to={ `/product-detail/${item.id}` }
             data-testid="product-detail-link"
           >
-            Mais detalhes...
+            <button
+              className="button-details"
+              type="button"
+            >
+              Mais detalhes...
+            </button>
           </Link>
+          <br />
           <button
+            className="button-cardItens"
             onClick={ onClickColocaCarrinho } // requisito 8
             type="button"
             data-testid="product-add-to-cart"

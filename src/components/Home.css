@@ -1,8 +1,6 @@
-
 .container-home {
   /* background-color: aqua;  */
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
   height: 100vh;
   width: 100vw;
   padding: 50px;
@@ -19,9 +17,9 @@
   align-items: center;
 }
 
-h3 {
+.search-title {
   text-align: center;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 400;
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -30,7 +28,11 @@ h3 {
 }
 
 .input-home {
-  width: 60%;
+  font-family: 'Times New Roman', Times, serif;
+  letter-spacing: 1.5px;
+  font-size: 16px;
+  width: 50%;
+  text-align: center;
   box-sizing: border-box;
   border: 1px solid #555;
   outline: none;
@@ -38,7 +40,7 @@ h3 {
 }
 
 .input-home:focus {
-  background-color: rgb(231, 231, 216);
+  background-color: #f4f4f4;
 }
 
 .label-input {
@@ -46,6 +48,9 @@ h3 {
 }
 
 .button-home {
+  font-family: 'Times New Roman', Times, serif;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
   background-color: #198754;
   margin-top: 20px;
   width: 20vw;
@@ -72,12 +77,46 @@ h3 {
   /* background-color: yellow; */
   margin-top: 20px;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
-  justify-content: space-around;
+  /* width: 30%; */
+  /* justify-content: space-around; */
 }
 
 #button-home2 {
+  font-family: 'Times New Roman', Times, serif;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-top: 5px;
+  /* width: 20vw; */
+  border: none;
+  padding: 10px;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  border-radius: 8px;
   background-color:rgb(50, 167, 145);
   border-color: #198754;
   color: #fff;
+}
+
+.search {
+  display: flex;
+  flex-direction: column;
+}
+
+.categorias-produtos {
+  display: flex;
+  /* flex-direction: column; */
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.section-home {
+  display: flex;
+  flex-wrap: wrap;
+  width: 70%;
+  margin-top: 20px;
 }
