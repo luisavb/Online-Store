@@ -150,12 +150,12 @@ class ProductDetail extends React.Component {
                     onChange={ this.changeInput }
                   />
                   <p className="opiniao-produto">Sua avaliação</p>
-                  <div>
+                  <div className="radio">
                     {limite.map((e) => (
                       <label key={ e } htmlFor={ e }>
                         { e }
                         <input
-                          className="radio"
+                          
                           id={ e }
                           type="radio"
                           data-testid={ `${e}-rating` }
