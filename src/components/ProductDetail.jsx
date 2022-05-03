@@ -2,7 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { getProductDetail } from '../services/api';
-import './comentarios.css';
+import './ProductDetail.css';
 
 class ProductDetail extends React.Component {
   constructor() {
@@ -78,86 +78,121 @@ class ProductDetail extends React.Component {
     const { onClickColocaCarrinho } = this.props;
     // console.log(product.base_price);
     return (
-      <div>
-        <p data-testid="product-detail-name">{ produto.title }</p>
-        <p>{produto.base_price}</p>
-        <img src={ produto.thumbnail } alt={ produto.title } />
-        <h3>Especificações Técnicas</h3>
-        <ul>
-          <li>{produto.warranty}</li>
-          <li>{produto.condition}</li>
-          <li>{produto.status}</li>
-        </ul>
-
-        <button
-          onClick={ () => onClickColocaCarrinho(
-            produto.title,
-            produto.price,
-            produto.thumbnail,
-          ) }
-          type="button"
-          data-testid="product-detail-add-to-cart"
-        >
-          Adicionar ao carrinho
-        </button>
-
-        <Link to="/shopping-cart" data-testid="shopping-cart-button">
-          carrinho de compras
-        </Link>
-        <form>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            value={ email }
-            placeholder="Email"
-            data-testid="product-detail-email"
-            onChange={ this.changeInput }
-          />
-          {limite.map((e) => (
-            <label key={ e } htmlFor={ e }>
-              { e }
-              <input
-                id={ e }
-                type="radio"
-                data-testid={ `${e}-rating` }
-                name="avaliação"
-                onChange={ this.changeInput }
-              />
-            </label>
-
-          )) }
-          <textarea
-            type="text"
-            name="texto"
-            id="text"
-            placeholder="Mensagem(opcional)"
-            value={ texto }
-            data-testid="product-detail-evaluation"
-            onChange={ this.changeInput }
-          />
-          <button
-            type="submit"
-            data-testid="submit-review-btn"
-            onClick={ this.buttonLocalStorage }
+      <div className="container-product">
+        <header className="carrinho">
+          <h1>Online Store</h1>
+          <Link
+            data-testid="shopping-cart-button"
+            to="/shopping-cart"
           >
-            Avaliar
-          </button>
-        </form>
-        {comentarios.map((comentario, index) => (
-          <div className="comentario" key={ comentario.email + index }>
-            <p>
-              { comentario.email }
-            </p>
-            <p>
-              { comentario.nota }
-            </p>
-            <p>
-              { comentario.texto }
-            </p>
-          </div>
-        ))}
+            <img src="../shopping-cart.png" alt="carrinho" width="40px" />
+          </Link>
+        </header>
+        <main className="main-prod-detail">
+          <section className="product-detail">
+            <div className="product-img">
+              <img src={ produto.thumbnail } alt={ produto.title } width="250px" />
+            </div>
+            <div className="product-descricao">
+              <h3 className="title" data-testid="product-detail-name">
+                { produto.title }
+              </h3>
+              <p className="price">{`R$: ${produto.base_price}`}</p>
+              <h3 className="espec-tecnica">Especificações Técnicas</h3>
+              <ul>
+                <li className="li">{produto.warranty}</li>
+                <li className="li">{`Condição: ${produto.condition}`}</li>
+                <li className="li">{`Situação: ${produto.status}`}</li>
+              </ul>
+              <div>
+                <button
+                  className="button-prod-detail"
+                  onClick={ () => onClickColocaCarrinho(
+                    produto.title,
+                    produto.price,
+                    produto.thumbnail,
+                  ) }
+                  type="button"
+                  data-testid="product-detail-add-to-cart"
+                >
+                  Adicionar ao carrinho
+                </button>
 
+              </div>
+            </div>
+          </section>
+          {/* <Link to="/shopping-cart" data-testid="shopping-cart-button">
+            carrinho de compras
+          </Link> */}
+          <section className="section-comentarios">
+            <h3 className="opiniao-produto">Deixe sua opinião sobre o produto</h3>
+            <div className="comentarios-conteudo">
+              <div className="form-comentarios">
+                <form>
+                  <input
+                    className="input-opiniao"
+                    type="email"
+                    name="email"
+                    id="email"
+                    value={ email }
+                    placeholder="Email"
+                    data-testid="product-detail-email"
+                    onChange={ this.changeInput }
+                  />
+                  <textarea
+                    className="textarea"
+                    type="text"
+                    name="texto"
+                    id="text"
+                    placeholder="Mensagem(opcional)"
+                    value={ texto }
+                    data-testid="product-detail-evaluation"
+                    onChange={ this.changeInput }
+                  />
+                  <p className="opiniao-produto">Sua avaliação</p>
+                  <div>
+                    {limite.map((e) => (
+                      <label key={ e } htmlFor={ e }>
+                        { e }
+                        <input
+                          className="radio"
+                          id={ e }
+                          type="radio"
+                          data-testid={ `${e}-rating` }
+                          name="avaliação"
+                          onChange={ this.changeInput }
+                        />
+                      </label>
+                    )) }
+                  </div>
+                  <button
+                    className="button-detail-avaliar"
+                    type="submit"
+                    data-testid="submit-review-btn"
+                    onClick={ this.buttonLocalStorage }
+                  >
+                    Avaliar
+                  </button>
+                </form>
+              </div>
+              <div className="historico-comentarios">
+                {comentarios.map((comentario, index) => (
+                  <div className="comentario" key={ comentario.email + index }>
+                    <p className="nota">
+                      { comentario.nota }
+                    </p>
+                    <p className="email">
+                      { comentario.email }
+                    </p>
+                    <p className="texto">
+                      { comentario.texto }
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        </main>
       </div>
     );
   }
