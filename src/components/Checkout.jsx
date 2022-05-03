@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
-// import { getProductDetail } from '../services/api';
+import './Checkout.css';
 
 class Checkout extends React.Component {
   constructor() {
@@ -24,17 +24,19 @@ class Checkout extends React.Component {
   button = (event) => {
     event.preventDefault();
     const { nome, cpf, email, cep, endereco, metodo } = this.state;
-    if (nome.length > 0
-        && cpf.length > 0
-        && email.length > 0
-        && cep.length > 0
-        && endereco.length > 0
-        && metodo.length > 0) {
+    if (
+      nome.length > 0
+      && cpf.length > 0
+      && email.length > 0
+      && cep.length > 0
+      && endereco.length > 0
+      && metodo.length > 0
+    ) {
       this.setState({ redirecionar: false });
     } else {
       this.setState({ mensagem: false });
     }
-  }
+  };
 
   changeInput({ target }) {
     const { name } = target;
@@ -46,16 +48,7 @@ class Checkout extends React.Component {
   }
 
   render() {
-    const {
-      nome,
-      cpf,
-      email,
-      tel,
-      cep,
-      endereco,
-      redirecionar,
-      mensagem,
-    } = this.state;
+    const { nome, cpf, email, tel, cep, endereco, redirecionar, mensagem } = this.state;
 
     const { carrinho } = this.props;
 
@@ -63,25 +56,23 @@ class Checkout extends React.Component {
       <div>
         <section>
           {carrinho !== 0
-          && carrinho.map((item, index) => (
-            <div key={ index }>
-              <p>{item.title}</p>
-              <img src={ item.thumbnail } alt={ item.title } />
-              <p>{item.price}</p>
-              <p>
-                {item.quantidade}
-              </p>
-              <p>
-                {' '}
-                { item.total }
-                {' '}
-              </p>
-            </div>
-          ))}
+            && carrinho.map((item, index) => (
+              <div className="productCheckout" key={ index }>
+                <img src={ item.thumbnail } alt={ item.title } width="150px" />
+                <div className="nameCheckout">
+                  <p>{item.title}</p>
+                </div>
+                <p>{`Valor unitário: R$ ${item.price}`}</p>
+                <p>{`Quantidade:${item.quantidade}`}</p>
+                <p>{`Valor Total: R$ ${item.total}`}</p>
+              </div>
+            ))}
           {/* soma de todos os preços */}
         </section>
         <section>
           <form>
+            <h3 className="titleCheckout">Informações do Comprador:</h3>
+            <br />
             <input
               type="text"
               value={ nome }
@@ -98,6 +89,7 @@ class Checkout extends React.Component {
               placeholder="CPF"
               onChange={ this.changeInput }
             />
+            <br />
             <input
               type="email"
               value={ email }
@@ -114,6 +106,7 @@ class Checkout extends React.Component {
               placeholder="Telefone"
               onChange={ this.changeInput }
             />
+            <br />
             <input
               type="text"
               value={ cep }
@@ -132,20 +125,25 @@ class Checkout extends React.Component {
             />
           </form>
           <form>
-            <h3>Método de Pagamento</h3>
+            <br />
+            <h3 className="titleCheckout">Método de Pagamento:</h3>
             <label htmlFor="boleto">
-              <legend>Boleto</legend>
-              <span> </span>
               <input
                 type="radio"
                 name="metodo"
                 id="boleto"
                 onChange={ this.changeInput }
               />
+              Boleto
             </label>
             <label htmlFor="visa">
-              <legend>Cartão de Crédito</legend>
-              <input type="radio" name="metodo" id="visa" onChange={ this.changeInput } />
+              {/* <legend>Cartão de Crédito:</legend> */}
+              <input
+                type="radio"
+                name="metodo"
+                id="visa"
+                onChange={ this.changeInput }
+              />
               Visa
             </label>
             <label htmlFor="master">
@@ -158,21 +156,27 @@ class Checkout extends React.Component {
               MasterCard
             </label>
             <label htmlFor="elo">
-              <input type="radio" name="metodo" id="elo" onChange={ this.changeInput } />
+              <input
+                type="radio"
+                name="metodo"
+                id="elo"
+                onChange={ this.changeInput }
+              />
               Elo
             </label>
+            <br />
+            <button
+              className="buttonComprarCheckout"
+              type="submit"
+              onClick={ this.button }
+            >
+              Comprar
+            </button>
           </form>
-          <button
-            type="submit"
-            onClick={ this.button }
-          >
-            Comprar
-          </button>
         </section>
-        { !redirecionar && <Redirect to="/" /> }
-        { !mensagem && <p> Preencha todos os campos </p> }
+        {!redirecionar && <Redirect to="/" />}
+        {!mensagem && <p> Preencha todos os campos </p>}
       </div>
-
     );
   }
 }
