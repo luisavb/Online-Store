@@ -1,0 +1,219 @@
+.container-product {
+  width: 100%;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+}
+
+.title {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 30px;
+  /* margin-top: 50px */
+}
+
+.main-prod-detail {
+  width: 70%;
+  margin-top: 40px;
+  /* display: flex;
+  flex-direction: column; */
+}
+
+.espec-tecnica {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 70px 0px 10px 0px;
+  /* margin-top: 50px */
+}
+
+.nota {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+.email {
+  text-align: left;
+  font-size: 14px;
+  font-weight: 800;
+  margin-bottom: 5px;
+}
+
+.texto {
+  text-align: left;
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 5px;
+}
+
+
+
+.product-detail {
+  margin-top: 60px;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  height: 60vh;
+}
+
+.product-img{
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+
+.product-descricao {
+  width: 40%;
+  height: 95%;
+  margin-top: 10px;
+  margin-left: 55px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid rgb(141, 140, 140);
+  border-radius: 10px;
+}
+
+.li{
+  text-align: center;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 5px;
+  /* margin-top: 50px */
+}
+
+.opiniao-produto {
+  text-align: left;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 5px;
+  margin-bottom: 20px;
+}
+
+.input-opiniao {
+  font-family: 'Times New Roman', Times, serif;
+  letter-spacing: 1.5px;
+  font-size: 16px;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  border: 1px solid #555;
+  outline: none;
+  padding: 5px 100px;
+  margin-bottom: 20px;
+}
+
+.input-opiniao:focus {
+  background-color: #f4f4f4;
+}
+
+.textarea {
+  font-family: 'Times New Roman', Times, serif;
+  letter-spacing: 1.5px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #555;
+  outline: none;
+  padding: 45px 100px;
+  margin-bottom: 20px;
+}
+
+.price {
+  font-size: 20px;
+  font-weight: 800;
+  color: #E67A00;
+}
+
+.button-prod-detail {
+  font-family: 'Times New Roman', Times, serif;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  background-color: #198754;
+  margin-top: 20px;
+  width: 100%;
+  border: none;
+  color: white;
+  padding: 10px;
+  text-decoration: none;
+  font-size: 14px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  border-radius: 8px;
+}
+
+
+.button-prod-detail:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.section-comentarios {
+  width: 100%;
+  padding: 50px 20px 0 40px ;
+  background-color: white;
+  height: 60vh;
+}
+
+.form-comentarios {
+  width: 50%;
+}
+
+.form-comentarios form {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+}
+
+.historico-comentarios{
+width: 50%;
+padding: 0px 20px 0 50px ;
+}
+
+.comentarios-conteudo {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.button-detail-avaliar {
+  font-family: 'Times New Roman', Times, serif;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  background-color: #E67A00;
+  margin-top: 20px;
+  width: 20vw;
+  border: none;
+  color: white;
+  padding: 10px;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  border-radius: 8px;
+}
+
+.button-detail-avaliar:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.comentario {
+  background-color: #f4f4f4;;
+  margin-bottom: 10px;
+  padding: 8px;
+}
