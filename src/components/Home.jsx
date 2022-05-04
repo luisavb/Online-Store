@@ -93,8 +93,16 @@ class Home extends React.Component {
           </Link>
         </header>
         <section className="search">
-          <label className="label-input" htmlFor="text" data-testid="home-initial-message">
-            <h3 className="search-title">Digite algum termo de pesquisa ou escolha uma categoria.</h3>
+          <label
+            className="label-input"
+            htmlFor="text"
+            data-testid="home-initial-message"
+          >
+            <h3
+              className="search-title"
+            >
+              Digite algum termo de pesquisa ou escolha uma categoria.
+            </h3>
             <input
               className="input-home"
               data-testid="query-input"
@@ -106,7 +114,12 @@ class Home extends React.Component {
             />
           </label>
           <div className="button-div">
-            <button className="button-home" onClick={ this.onClick } type="button" data-testid="query-button">
+            <button
+              className="button-home"
+              onClick={ this.onClick }
+              type="button"
+              data-testid="query-button"
+            >
               Pesquisar
             </button>
           </div>
@@ -118,7 +131,7 @@ class Home extends React.Component {
                 { id, name }, // faço um map em todas as categorias disponibilizadas para que cada uma tenha um formato de botao e o seu atributo especifico. Ao clicar no botao da categoria especifica
               ) => (
                 <button
-                  className="button-home"
+                  className="button-category"
                   id="button-home2"
                   data-testid="category"
                   type="button"
@@ -130,7 +143,6 @@ class Home extends React.Component {
               ),
             )}
           </aside>
-          {/* <div> */}
           {loading && (
             <section className="section-home">
               {pesquisa.map((elemento) => ( // uso a hof map para o cardItem mostrar as especificaçoes desejadas para cada elemento da pesquisa
@@ -147,23 +159,9 @@ class Home extends React.Component {
             </section>
           )}
           {loading === null && <div className="section-home" />}
-          {loading === false && <p className="section-home">Nenhum produto foi encontrado</p>}
-          {/* {botaoCategoria && ( // vira true o botaoCategoria ao clicar no botao da categoria especifica. Com isso, faço um map para que mostra para cada elemento os detalhes desejados
-            <section className="section-home">
-              {resultadoBotaoCategoria.map((categoria) => (
-                <CardItem
-                  key={ categoria.id }
-                  item={ categoria }
-                  onClickColocaCarrinho={ () => onClickColocaCarrinho(
-                    categoria.title,
-                    categoria.price,
-                    categoria.thumbnail,
-                  ) }
-                />
-              ))}
-            </section>
-          )} */}
-          {/* </div> */}
+          {loading === false
+          && (<p className="section-home">Nenhum produto foi encontrado</p>
+          )}
         </section>
       </div>
     );

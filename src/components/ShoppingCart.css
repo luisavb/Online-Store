@@ -1,118 +1,123 @@
 .buttonCartItens {
-  font-family: "Times New Roman", Times, serif;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
   background-color: darkred;
-  margin-top: 20px;
-  margin-bottom: 5px;
-  width: 10vw;
   border: none;
+  border-radius: 8px;
   color: white;
+  cursor: pointer;
+  font-family: Times , serif;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  margin-bottom: 5px;
+  margin-top: 20px;
   padding: 5px;
   text-decoration: none;
-  font-size: 10px;
-  cursor: pointer;
-  -webkit-transition-duration: 0.4s;
-  transition-duration: 0.4s;
-  border-radius: 8px;
-}
-.buttonCartItens:hover {
-  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
-    0 17px 50px 0 rgba(0, 0, 0, 0.19);
-}
-.buttonCartItensAumentar {
-  font-family: "Times New Roman", Times, serif;
-  letter-spacing: 1.5px;
   text-transform: uppercase;
+
+  /* -webkit-transition-duration: 0.4s; */
+  transition-duration: 0.4s;
+  width: 10vw;
+}
+
+.buttonCartItens:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24) , 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.buttonCartItensAumentar {
   background-color: #198754;
-  margin-top: 20px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-family: Times , serif;
+  font-size: 14px;
+  letter-spacing: 1.5px;
   margin-bottom: 5px;
   margin-left: 30px;
-  width: 10vw;
-  border: none;
-  color: white;
+  margin-top: 20px;
   padding: 5px;
   text-decoration: none;
-  font-size: 10px;
-  cursor: pointer;
-  -webkit-transition-duration: 0.4s;
+  text-transform: uppercase;
+
+  /* -webkit-transition-duration: 0.4s; */
   transition-duration: 0.4s;
-  border-radius: 8px;
+  width: 10vw;
 }
+
 .buttonCartItensAumentar:hover {
-  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
-    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24) , 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
 .buttonCartItensRemover {
-  font-family: "Times New Roman", Times, serif;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
   background-color: #198754;
-  margin-top: 20px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-family: Times , serif;
+  font-size: 14px;
+  letter-spacing: 1.5px;
   margin-bottom: 5px;
   margin-left: 30px;
-  width: 10vw;
-  border: none;
-  color: white;
+  margin-top: 20px;
   padding: 5px;
   text-decoration: none;
-  font-size: 10px;
-  cursor: pointer;
-  -webkit-transition-duration: 0.4s;
+  text-transform: uppercase;
+
+  /* -webkit-transition-duration: 0.4s; */
   transition-duration: 0.4s;
-  border-radius: 8px;
+  width: 10vw;
 }
+
 .buttonCartItensRemover:hover {
-  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
-    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24) , 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
 .buttonCartItensCheckOut {
-  font-family: "Times New Roman", Times, serif;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
   background-color: #198754;
-  margin-top: 20px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-family: Times , serif;
+  font-size: 16px;
+  letter-spacing: 1.5px;
   margin-bottom: 5px;
   margin-left: 5px;
-  width: 10vw;
-  border: none;
-  color: white;
+  margin-top: 20px;
   padding: 5px;
   text-decoration: none;
-  font-size: 16px;
-  cursor: pointer;
-  -webkit-transition-duration: 0.4s;
+  text-transform: uppercase;
+
+  /* -webkit-transition-duration: 0.4s; */
   transition-duration: 0.4s;
-  border-radius: 8px;
+  width: 10vw;
 }
+
 .buttonCartItensCheckout:hover {
-  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
-    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24) , 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
 
 .productCart {
+  align-items: center;
   background-color: white;
-  /* background-color: red; */
   border: 1px solid black;
   display: flex;
+  flex-flow: wrap;
   flex-direction: row;
-  flex-wrap: wrap;
-  /* flex-shrink: 2; */
   justify-content: space-evenly;
-  align-items: center;
   margin: 5px;
   width: 100%;
 }
+
 .botaoCart {
   display: flex;
   justify-content: space-around;
 }
+
 .itemCart {
   display: flex;
-  flex-wrap: wrap;
+  flex-flow: wrap;
   flex-direction: column;
   width: 45%;
 }

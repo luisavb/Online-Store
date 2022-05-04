@@ -62,9 +62,9 @@ class Checkout extends React.Component {
                 <div className="nameCheckout">
                   <p>{item.title}</p>
                 </div>
-                <p>{`Valor unitário: R$ ${item.price}`}</p>
-                <p>{`Quantidade:${item.quantidade}`}</p>
-                <p>{`Valor Total: R$ ${item.total}`}</p>
+                <p className="checkoutP">{`Valor unitário: R$ ${item.price}`}</p>
+                <p className="checkoutP">{`Quantidade:${item.quantidade}`}</p>
+                <p className="checkoutP">{`Valor Total: R$ ${item.total}`}</p>
               </div>
             ))}
           {/* soma de todos os preços */}

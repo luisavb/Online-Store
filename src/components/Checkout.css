@@ -1,59 +1,67 @@
 .productCheckout {
+  align-items: center;
   background-color: white;
-  /* background-color: red; */
   border: 1px solid black;
   display: flex;
+  flex-flow: wrap;
   flex-direction: row;
-  flex-wrap: wrap;
-  /* flex-shrink: 2; */
   justify-content: space-evenly;
-  align-items: center;
   margin: 5px;
   width: 100%;
 }
+
 .nameCheckout {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+  flex-flow: wrap;
   flex-direction: column;
+  justify-content: space-evenly;
+  width: 16%;
 }
+
+.checkoutP {
+  width: 8%;
+}
+
 input {
-  margin-right: 10px;
-  margin-bottom: 4px;
-  text-align: center;
+  font-family: Times , serif;
   font-size: 16px;
   font-weight: 800;
   letter-spacing: 1.5px;
-  font-family: 'Times New Roman', Times, serif;
-  
-}
-.titleCheckout{
+  margin-bottom: 4px;
+  margin-right: 10px;
   text-align: center;
+}
+
+.titleCheckout {
   font-size: 20px;
   font-weight: 400;
   letter-spacing: 1.5px;
-  text-transform: uppercase;
-  padding: 30px;
   margin-top: 50px;
+  padding: 30px;
+  text-align: center;
+  text-transform: uppercase;
 }
-form{
+
+form {
   text-align: center;
 }
+
 .buttonComprarCheckout {
-  font-family: "Times New Roman", Times, serif;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
   background-color: #198754;
-  margin-top: 20px;
-  margin-bottom: 5px;
-  width: 10vw;
   border: none;
+  border-radius: 8px;
   color: white;
+  cursor: pointer;
+  font-family: Times , serif;
+  font-size: 16px;
+  letter-spacing: 1.5px;
+  margin-bottom: 5px;
+  margin-top: 20px;
   padding: 5px;
   text-decoration: none;
-  font-size: 16px;
-  cursor: pointer;
-  -webkit-transition-duration: 0.4s;
+  text-transform: uppercase;
+
+  /* -webkit-transition-duration: 0.4s; */
   transition-duration: 0.4s;
-  border-radius: 8px;
+  width: 10vw;
 }
