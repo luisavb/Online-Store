@@ -1,4 +1,9 @@
-# 🚧 README em construção 🚧
+Projeto em React desenvolvido em grupo durante o curso de Desenvolvimento Web da Trybe, onde se realiza a requisição da API do Mercado Livre e simula uma loja online.
+
+Grupo: 
+@EduardoAzzevedo, @felmartins1985, @dannibueno, @luisavb
+
+
 
 <!-- Olá, Tryber!
 
