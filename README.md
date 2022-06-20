@@ -3,7 +3,9 @@ Projeto em React desenvolvido em grupo durante o curso de Desenvolvimento Web da
 Grupo: 
 @EduardoAzzevedo, @felmartins1985, @dannibueno, @luisavb
 
+Online Store GitHub Pages: https://luisavb.github.io/Online-Store/
 
+![ProjetoFrontEnd](https://user-images.githubusercontent.com/88630222/174515562-979404f3-7471-4a09-99d8-11a94e558d35.gif)
 
 <!-- Olá, Tryber!
 
