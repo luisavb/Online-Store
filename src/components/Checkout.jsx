@@ -174,7 +174,7 @@ class Checkout extends React.Component {
             </button>
           </form>
         </section>
-        {!redirecionar && <Redirect to="/" />}
+        {!redirecionar && <Redirect to="/Online-Store" />}
         {!mensagem && <p> Preencha todos os campos </p>}
       </div>
     );
