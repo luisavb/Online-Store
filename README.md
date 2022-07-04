@@ -1,6 +1,6 @@
 # Online Store
 
-# Contexto
+## Contexto
 Projeto em React desenvolvido em grupo, onde se simula uma loja online.
 
 Link do GitHubPages - https://luisavb.github.io/Online-Store/
